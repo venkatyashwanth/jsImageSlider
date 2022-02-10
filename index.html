@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+</head>
+<style>
+  div{
+        width: 50%;
+        height: 50vh;
+        margin: auto;
+        border: 1px solid black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    button{
+        font-size: 42px;
+        align-self: flex-start;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <h1>Image Slider</h1>
+    <div id="imageContainer">
+        <button id="showPrev">&#8592</button>
+        <img src="./images/apple.jpg" height="300" widht="300" id="imgEl">
+        <button id="showNext">&#8594</button>
+    </div>
+
+    <script>
+        imageArray = [
+            "./images/apple.jpg",
+            "./images/banana.jpg",
+            "./images/cashew.jpg",
+            "./images/dairymilk.jpg",
+            "./images/elephant.jpg"
+        ];
+        let imgEl = document.getElementById("imgEl");
+        let showPrev = document.getElementById("showPrev");
+        let showNext = document.getElementById("showNext");
+
+        setInterval(imageRoller,4000)
+        val = 0;
+        function imageRoller(){
+            if(val < imageArray.length-1){
+                imgEl.src = imageArray[val];
+                val += 1;
+            }else{
+                val = 0;
+            }
+        }
+
+        showPrev.addEventListener('click',()=>{
+            if(val>0){
+                val -= 1;
+                imgEl.src = imageArray[val];
+            }else{
+                val = imageArray.length-1;
+                imgEl.src = imageArray[val];
+            }
+            
+        })
+
+        showNext.addEventListener('click',()=>{
+            if(val<imageArray.length-1){
+                val += 1;
+                imgEl.src = imageArray[val];
+            }else{
+                val = 0;
+                imgEl.src = imageArray[val];
+            }
+            
+        })
+
+    </script>
+</body>
+</html>
